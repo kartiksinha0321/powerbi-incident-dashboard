@@ -3,7 +3,9 @@
 ## Overview
 This project focuses on analyzing IT incident data to monitor operational efficiency, SLA compliance, and backlog trends.
 
-The dashboard helps stakeholders identify bottlenecks, improve resolution performance, and reduce SLA breaches.
+The solution is built using Power BI for data visualization and SQL for data extraction and transformation. The dataset used in this project is provided in Excel format for accessibility.
+
+This dashboard helps stakeholders identify bottlenecks, improve resolution performance, and reduce SLA breaches.
 
 ------------------------------------------------------------
 
@@ -16,7 +18,7 @@ The dashboard helps stakeholders identify bottlenecks, improve resolution perfor
 - Average Resolution Time: 7.6 hours
 
 CRITICAL OBSERVATION:
-536 P1 SLA breaches detected, indicating major gaps in handling high-priority incidents.
+536 P1 SLA breaches detected, indicating significant gaps in high-priority incident handling.
 
 ------------------------------------------------------------
 
@@ -46,46 +48,74 @@ CRITICAL OBSERVATION:
 ## Tools & Technologies
 
 - Power BI (Data Visualization & Dashboarding)
-- DAX (Measures & KPIs)
-- SQL (Data Analysis - assumed)
-- Excel / CSV (Data Source)
+- SQL (Data extraction and transformation)
+- DAX (Measures, KPIs, and calculations)
+- Excel (.xlsx dataset for analysis)
+
+------------------------------------------------------------
+
+## Data Source
+
+The dataset used in this project is included in Excel format:
+
+dataset/
+   └── incident_data.xlsx
+
+Note:
+The original data was extracted using SQL from a relational database.  
+The Excel file represents a cleaned and structured version of the dataset for analysis and visualization purposes.
+
+------------------------------------------------------------
+
+## SQL Usage
+
+- Extracted data from relational database tables
+- Used JOIN operations to combine multiple entities (incidents, categories, assignment groups)
+- Applied filtering and aggregations for KPI calculations
+- Prepared dataset for Power BI data modeling
+
+Note:
+The SQL logic is represented conceptually as the original database is not included in this repository.
+
+------------------------------------------------------------
+
+## Data Model
+
+The dashboard follows a structured data model:
+
+- Fact Table: Incident Data
+- Dimension Tables: Date, Priority, Category, Assignment Group
+
+This model enables efficient filtering, better performance, and scalable reporting.
 
 ------------------------------------------------------------
 
 ## Key Features
 
 - Interactive slicers (Date, Priority, Category, Assignment Group)
-- KPI-based dashboard design
-- Drill-down analysis across multiple dimensions
-- Combination of operational and strategic insights
-
-------------------------------------------------------------
-
-## Data Model (Suggested Explanation)
-
-The dashboard follows a simplified data model:
-- Fact Table: Incident Data
-- Dimensions: Date, Priority, Category, Assignment Group
-
-This enables efficient filtering and scalable reporting.
+- KPI-driven dashboard design
+- Drill-down capability across categories and priorities
+- Combined operational and strategic insights
+- SLA monitoring and backlog analysis
 
 ------------------------------------------------------------
 
 ## Business Impact
 
 - Identifies SLA breach drivers
-- Helps reduce incident backlog
-- Improves operational efficiency
-- Enables data-driven decision making
-- Supports proactive incident management
+- Highlights high backlog and operational inefficiencies
+- Improves incident resolution visibility
+- Supports data-driven decision making
+- Enables proactive incident management
 
 ------------------------------------------------------------
 
 ## Files Included
 
 - Power BI (.pbix) file
+- Excel dataset (.xlsx)
 - Dashboard PDF
-- Dashboard screenshots (for preview)
+- Dashboard screenshots (preview)
 
 ------------------------------------------------------------
 
