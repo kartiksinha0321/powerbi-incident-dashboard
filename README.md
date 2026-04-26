@@ -123,4 +123,3 @@ This model enables efficient filtering, better performance, and scalable reporti
 
 Kartik Sinha
 Power BI Data Analyst | SQL | Business Intelligence
-Immediate Joiner
