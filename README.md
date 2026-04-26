@@ -92,5 +92,5 @@ This enables efficient filtering and scalable reporting.
 ## Author
 
 Kartik Sinha
-Power BI Developer | SQL | Data Analytics
+Power BI Data Analyst | SQL | Business Intelligence
 Immediate Joiner
