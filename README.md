@@ -382,52 +382,87 @@ A **Back button** allows users to return to the originating report page after co
 
 # 📂 Data Source
 
-The project uses a structured incident management dataset containing **15,000 incident records** covering the period from **2023 to 2026**.
+# 📂 Data Source
 
-The dataset contains information related to:
+The project uses two structured datasets designed to support incident management and customer experience analytics.
 
-- Incident details
-- Created and resolved dates
-- Status
+### Fact Incident Dataset
+
+The `Fact_incident_Dataset.xlsx` file contains **15,000 incident-level records** covering the period from **2023 to 2026**.
+
+The dataset includes:
+
+- Incident ID
+- Created Date
+- Resolved Date
 - Priority
 - Severity
-- Category and subcategory
-- Assignment groups
-- Resolvers
-- Resolution time
-- SLA performance
-- Reopened incidents
-- Customer information
-- Customer satisfaction ratings
+- Status
+- Category
+- Subcategory
+- Assignment Group
+- Resolver
+- SLA Target Hours
+- Resolution Time (Hours)
+- Reopened Flag
+- SLA Breach Flag
+- Customer ID
+- Ticket Subject
+- Ticket Description
+- Resolution Details
+- Customer Satisfaction Rating (CSAT)
 
-The dataset is provided in **Excel (.xlsx) format** within the repository so that the project data can be reviewed easily.
+### Customer Dataset
 
-The analytical dataset was prepared using SQL before being used for Power BI reporting and analysis.
+The `Dim_Customer_Dataset.xlsx` file contains **5,000 customer records** and is used as the customer dimension in the Power BI data model.
+
+The dataset includes:
+
+- Customer ID
+- Customer Name
+- Customer Email
+- Customer Age
+- Customer Gender
+
+The `Customer ID` field is used to establish the relationship between the incident fact data and the customer dimension, enabling customer-level and demographic analysis.
+
+Both datasets are provided in **Excel (.xlsx) format** within the repository for easy access and review.
+
+SQL Server was used for data preparation and analysis before the data was modeled in Power BI. The repository also includes SQL scripts demonstrating table creation, data loading, analytical queries, KPI validation, and data quality checks.
 
 ---
 
 # 🗃️ Data Model
 
-The Power BI solution uses a structured data model designed to support efficient filtering and analysis.
+The Power BI solution follows a **star-schema-style data model**, with the `Fact_Incident` table serving as the central fact table and multiple dimension tables supporting analytical filtering and segmentation.
 
-The model separates transactional incident information from analytical dimensions where applicable.
+### Core Fact Table
 
-Key analytical entities include:
+- `Fact_Incident` — Stores incident-level transactional data, including incident details, customer references, dates, categories, assignment groups, resolution metrics, SLA information, and customer satisfaction ratings.
 
-- Incident Data
-- Date
-- Customer
-- Priority
-- Category
-- Assignment Group
-- Resolver
+### Dimension Tables
 
-The model supports relationships required for time-based analysis, incident performance reporting, customer analytics, and interactive filtering.
+- `Dim_Date` — Supports date-based and time intelligence analysis
+- `Dim_Customer` — Contains customer demographic and profile information
+- `Dim_Priority` — Supports incident priority analysis
+- `Dim_Severity` — Supports severity-based analysis
+- `Dim_Status` — Supports incident status filtering
+- `Dim_Category` — Contains incident categories
+- `Dim_Subcategory` — Contains incident subcategories
+- `Dim_Assigned_Group` — Supports assignment group performance analysis
+- `Dim_Resolver` — Supports resolver-level performance analysis
 
-> A screenshot of the Power BI data model can be added here.
+### Supporting Tables
+
+- `Measure` — Centralized table for DAX measures
+- `Analysis By` — Field parameter used for dynamic dimension selection
+- `Metric` — Field parameter used for dynamic metric selection
+- `TOPN Parameter Range` — What-if parameter supporting dynamic Top-N analysis
+- `Last Refresh Time (IST)` — Supports display of the latest dashboard refresh timestamp
+
+The model uses primarily **one-to-many relationships** between dimension tables and the central fact table, enabling efficient filtering and analysis across different business dimensions.
 
 ![Power BI Data Model](images/data-model.png)
-
 ---
 
 # 💻 SQL Implementation
