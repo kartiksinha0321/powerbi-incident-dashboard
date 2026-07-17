@@ -1,125 +1,480 @@
-# Incident Analytics Dashboard (Power BI)
+# 📊 Incident Analytics Dashboard | Power BI
 
-## Overview
-This project focuses on analyzing IT incident data to monitor operational efficiency, SLA compliance, and backlog trends.
+![Power BI](https://img.shields.io/badge/Power%20BI-Data%20Visualization-yellow)
+![SQL](https://img.shields.io/badge/SQL-Data%20Preparation-blue)
+![DAX](https://img.shields.io/badge/DAX-Data%20Analysis-orange)
+![Power Query](https://img.shields.io/badge/Power%20Query-ETL-green)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
-The solution is built using Power BI for data visualization and SQL for data extraction and transformation. The dataset used in this project is provided in Excel format for accessibility.
+An end-to-end **Power BI Incident Analytics solution** designed to analyze IT service management (ITSM) data across incident volume, SLA performance, operational efficiency, customer experience, and incident drivers.
 
-This dashboard helps stakeholders identify bottlenecks, improve resolution performance, and reduce SLA breaches.
+The project combines **SQL-based data preparation, Power BI data modeling, DAX measures, field parameters, interactive analysis, decomposition analysis, and dynamic Top-N reporting** to provide actionable insights for IT operations and service management teams.
 
-------------------------------------------------------------
+---
 
-## Key Business Insights
+## 📑 Table of Contents
 
-- Total Incidents: 3000
-- Open Incidents: 2011 (High backlog)
-- Resolved Incidents: 989
-- SLA Compliance: 56.52%
-- Average Resolution Time: 7.6 hours
+- [Project Overview](#-project-overview)
+- [Business Problem](#-business-problem)
+- [Dashboard Overview](#-dashboard-overview)
+- [Key Business Insights](#-key-business-insights)
+- [Dashboard Pages](#-dashboard-pages)
+- [Key Features](#-key-features)
+- [Tools and Technologies](#-tools-and-technologies)
+- [Data Source](#-data-source)
+- [Data Model](#-data-model)
+- [SQL Implementation](#-sql-implementation)
+- [Repository Structure](#-repository-structure)
+- [How to Use](#-how-to-use)
+- [Future Enhancements](#-future-enhancements)
+- [Author](#-author)
 
-CRITICAL OBSERVATION:
-536 P1 SLA breaches detected, indicating significant gaps in high-priority incident handling.
+---
 
-------------------------------------------------------------
+## 🎯 Project Overview
 
-## Dashboard Pages
+The **Incident Analytics Dashboard** is a Power BI project that simulates a real-world IT Service Management (ITSM) analytics environment.
+
+The dashboard analyzes **15,000 incident records from 2023 to 2026** and provides visibility into:
+
+- Incident volume and trends
+- Open and resolved incident backlog
+- SLA compliance and breaches
+- Resolution time
+- Customer satisfaction (CSAT)
+- Reopened incidents
+- Assignment group performance
+- Resolver performance
+- Incident aging
+- Customer behavior
+- Dynamic incident analysis
+- Root-cause-style incident decomposition
+- Dynamic Top-N analysis
+
+The objective is to enable IT operations teams and management to move from static reporting toward interactive, data-driven incident analysis.
+
+---
+
+## 💼 Business Problem
+
+IT support organizations handle large volumes of incidents across multiple priorities, categories, assignment groups, and resolvers.
+
+Without centralized analytics, stakeholders may struggle to answer questions such as:
+
+- How effectively are incidents being resolved?
+- Are SLA targets being consistently achieved?
+- Which priorities or categories contribute most to SLA breaches?
+- Which teams handle the highest incident volumes?
+- How long are incidents remaining open?
+- Which categories experience the highest reopened incidents?
+- How does customer satisfaction vary by priority and category?
+- What factors are driving incident volumes?
+- Who are the top-performing or highest-volume resolvers?
+- How can users dynamically analyze different metrics without creating separate reports?
+
+This dashboard consolidates these analytical requirements into a multi-page Power BI solution.
+
+---
+
+## 📊 Dashboard Overview
+
+The solution contains **6 interactive analytical pages**:
 
 1. Executive Summary
-- Incident volume trend (2023–2025)
-- SLA compliance tracking
-- Backlog vs resolution comparison
-- Category and priority breakdown
-
 2. Operational Performance Analysis
-- Resolution time distribution
-- Average resolution time by category
-- Assignment group workload analysis
-- SLA compliance by assignment group
-- Top 5 incident drivers
+3. Customer Experience Analytics
+4. SLA & Performance Monitoring
+5. Incident Intelligence Hub
+6. Top N Analysis
+7. Investigation Center (Drillthrough)
 
-3. SLA & Performance Monitoring
-- SLA met vs breached trend
-- Open incident aging analysis
-- Priority-wise SLA compliance
-- P1 incident deep-dive
+Each page includes interactive slicers that allow analysis by:
 
-------------------------------------------------------------
+- Date
+- Status
+- Priority
+- Severity
+- Category
+- Subcategory
+- Assignment Group
 
-## Tools & Technologies
+---
 
-- Power BI (Data Visualization & Dashboarding)
-- SQL (Data extraction and transformation)
-- DAX (Measures, KPIs, and calculations)
-- Excel (.xlsx dataset for analysis)
+## 💡 Key Business Insights
 
-------------------------------------------------------------
+Based on the complete dataset:
 
-## Data Source
+| KPI | Value |
+|---|---:|
+| Total Incidents | 15,000 |
+| Open Incidents | 5,076 |
+| Resolved Incidents | 9,924 |
+| SLA Compliance | 97.11% |
+| SLA Breach Rate | 2.89% |
+| Average CSAT | 4.19 |
+| Average Resolution Time | 33.56 Hours |
+| P1 Incident Volume | 1,180 |
+| Open P1 Incidents | 378 |
+| P1 SLA Breaches | 26 |
+| Reopened Rate | 14.76% |
 
-The dataset used in this project is included in Excel format:
+### Key Observations
 
-dataset/
-   └── incident_data.xlsx
+- **SLA performance remains strong overall**, with 97.11% compliance and a 2.89% breach rate.
+- **5,076 incidents remain open**, making backlog management an important operational focus area.
+- **26 P1 incidents breached SLA**, highlighting the importance of continued monitoring of business-critical incidents.
+- **P3 represents the highest incident volume**, with approximately 6.7K incidents.
+- **Average CSAT is 4.19**, indicating generally positive customer satisfaction.
+- CSAT declined to **4.16 in 2025** before showing recovery in 2026.
+- The overall **reopened incident rate is 14.76%**, providing an opportunity to investigate resolution quality and recurring issues.
+- The **Desktop Team handles the largest incident workload**, with approximately 3K incidents.
+- Resolution time is concentrated primarily in the **24–48 hour** bucket.
 
-Note:
-The original data was extracted using SQL from a relational database.  
-The Excel file represents a cleaned and structured version of the dataset for analysis and visualization purposes.
+---
 
-------------------------------------------------------------
+# 📈 Dashboard Pages
 
-## SQL Usage
+## 1️⃣ Executive Summary
 
-- Extracted data from relational database tables
-- Used JOIN operations to combine multiple entities (incidents, categories, assignment groups)
-- Applied filtering and aggregations for KPI calculations
-- Prepared dataset for Power BI data modeling
+Provides a high-level overview of overall incident management performance.
 
-Note:
-The SQL logic is represented conceptually as the original database is not included in this repository.
+### Key Metrics
 
-------------------------------------------------------------
+- Total Incidents
+- Open Incidents
+- Resolved Incidents
+- Average CSAT
+- SLA Compliance %
+- Average Resolution Time
 
-## Data Model
+### Analysis Included
 
-The dashboard follows a structured data model:
+- Incident Volume Trend
+- Backlog vs Resolution Trend
+- Incident Distribution by Priority
+- Incident Distribution by Category
+- SLA Performance Trend
+- CSAT Trend
 
-- Fact Table: Incident Data
-- Dimension Tables: Date, Priority, Category, Assignment Group
+![Executive Summary](images/executive-summary.png)
 
-This model enables efficient filtering, better performance, and scalable reporting.
+---
 
-------------------------------------------------------------
+## 2️⃣ Operational Performance Analysis
 
-## Key Features
+Focuses on the operational efficiency of support teams and resolvers.
 
-- Interactive slicers (Date, Priority, Category, Assignment Group)
-- KPI-driven dashboard design
-- Drill-down capability across categories and priorities
-- Combined operational and strategic insights
-- SLA monitoring and backlog analysis
+### Analysis Included
 
-------------------------------------------------------------
+- Average Resolution Time by Category
+- Resolution Time Distribution
+- Incidents by Assignment Group
+- Average Resolution Time by Assignment Group
+- Resolver Efficiency
+- Reopened Incidents by Category
 
-## Business Impact
+This page helps identify workload distribution, resolution patterns, and areas where operational efficiency can be improved.
 
-- Identifies SLA breach drivers
-- Highlights high backlog and operational inefficiencies
-- Improves incident resolution visibility
-- Supports data-driven decision making
-- Enables proactive incident management
+![Operational Performance Analysis](images/operational-performance.png)
 
-------------------------------------------------------------
+---
 
-## Files Included
+## 3️⃣ Customer Experience Analytics
 
-- Power BI (.pbix) file
-- Excel dataset (.xlsx)
-- Dashboard PDF
-- Dashboard screenshots (preview)
+Provides insights into customer satisfaction and repeat incident behavior.
 
-------------------------------------------------------------
+### Key Metrics
 
-## Author
+- Average CSAT: **4.19**
+- Reopened Rate: **14.76%**
 
-Kartik Sinha
-Power BI Data Analyst | SQL | Business Intelligence
+### Analysis Included
+
+- CSAT Trend
+- CSAT Rating Distribution
+- CSAT by Priority
+- Customer Age Distribution
+- CSAT by Category
+- Repeat Customers by Category
+
+This page connects incident management performance with customer experience outcomes.
+
+![Customer Experience Analytics](images/customer-experience.png)
+
+---
+
+## 4️⃣ SLA & Performance Monitoring
+
+Provides detailed monitoring of SLA performance and high-priority incidents.
+
+### Key Metrics
+
+- SLA Compliance: **97.11%**
+- SLA Breach Rate: **2.89%**
+- Average Resolution Time: **33.56 Hours**
+- P1 Incident Volume: **1,180**
+- Open P1 Incidents: **378**
+
+### Analysis Included
+
+- SLA Met vs Breached
+- SLA Performance Trend
+- Open Incident Aging Analysis
+- SLA Compliance by Priority
+- Incident-Level Detail Table
+
+The dashboard also includes a dynamic alert highlighting critical P1 SLA breaches.
+
+**Current Dataset Alert: 26 P1 SLA breaches detected.**
+
+![SLA and Performance Monitoring](images/sla-performance-monitoring.png)
+
+---
+
+## 5️⃣ Incident Intelligence Hub
+
+The Incident Intelligence Hub enables flexible, self-service analysis of incident data.
+
+### Dynamic Analysis
+
+Users can dynamically select:
+
+- **Analysis By** dimension
+- **Metric** to analyze
+
+This allows the same visual to adapt based on the user's analytical requirements.
+
+### Incident Breakdown
+
+A decomposition-based analysis enables users to explore incident drivers across multiple dimensions, including:
+
+**Total Incidents → Assignment Group → Category → Subcategory → Resolver**
+
+This provides an interactive method for investigating the underlying factors contributing to incident volumes.
+
+![Incident Intelligence Hub](images/incident-intelligence-hub.png)
+
+---
+
+## 6️⃣ Top N Analysis
+
+Provides dynamic ranking and performance analysis using a configurable Top-N parameter.
+
+### Analysis Included
+
+- Top Categories
+- Top Resolvers
+- Top Priorities
+- Top Customers
+- Category Performance Ranking
+
+The detailed ranking table includes:
+
+- Total Incidents
+- Resolved Count
+- Open Count
+- Average CSAT
+- Average Resolution Time
+- SLA Compliance %
+- SLA Breach %
+
+Users can dynamically adjust the **Top-N selection** to control the number of results displayed.
+
+![Top N Analysis](images/top-n-analysis.png)
+
+---
+
+## 7️⃣ Investigation Center — Drillthrough Page
+
+The **Investigation Center** is a dedicated drillthrough page designed for detailed incident-level investigation.
+
+Users can drill through from supported visuals in the main report pages to investigate the underlying records while retaining the selected filter context.
+
+### Key KPIs
+
+- Total Incidents
+- Open Incidents
+- Resolved Incidents
+- Average CSAT
+- SLA Compliance %
+- SLA Breach %
+- MTTR (Hours)
+- Customer Count
+
+### Detailed Analysis
+
+The page provides two detailed views:
+
+**Incident Table**
+- Incident ID
+- Category
+- Subcategory
+- Assignment Group
+- Status
+- Priority
+- Severity
+- Created Date
+- Additional incident-level details
+
+**Customer Table**
+- Customer ID
+- Customer Name
+- Email
+- Age
+- Gender
+- Additional customer-level details
+
+### Drillthrough Functionality
+
+The Investigation Center enables users to move from high-level dashboard insights to detailed underlying records.
+
+For example, users can drill through based on dimensions such as:
+
+- Assignment Group
+- Category
+- Priority
+- Status
+- Other supported report dimensions
+
+The selected drillthrough context is automatically applied to the Investigation Center, allowing users to investigate the specific incidents and customers contributing to the selected metric or visual.
+
+A **Back button** allows users to return to the originating report page after completing their investigation.
+
+![Investigation Center](images/investigation-center.png)
+
+---
+
+# ⚙️ Key Features
+
+- Interactive multi-page Power BI dashboard
+- Dynamic KPI calculations using DAX
+- SQL-based data preparation
+- Power Query transformations
+- Interactive slicers and cross-filtering
+- Dynamic Field Parameters
+- Dynamic Metric Selection
+- Dynamic Analysis Dimensions
+- Decomposition Tree analysis
+- Dynamic Top-N analysis
+- SLA breach monitoring
+- P1 incident alerting
+- Incident aging analysis
+- CSAT analysis
+- Reopened incident analysis
+- Resolver and assignment group performance analysis
+- Detailed incident-level drill-down
+- Clear-all-slicers functionality
+
+---
+
+# 🛠️ Tools and Technologies
+
+| Technology | Usage |
+|---|---|
+| Power BI Desktop | Dashboard development and visualization |
+| DAX | KPIs, measures, dynamic calculations and ranking |
+| SQL | Data preparation, transformation and analysis |
+| Power Query | Data cleaning and transformation |
+| Microsoft Excel | Dataset distribution for project accessibility |
+| GitHub | Project documentation and version control |
+
+---
+
+# 📂 Data Source
+
+The project uses a structured incident management dataset containing **15,000 incident records** covering the period from **2023 to 2026**.
+
+The dataset contains information related to:
+
+- Incident details
+- Created and resolved dates
+- Status
+- Priority
+- Severity
+- Category and subcategory
+- Assignment groups
+- Resolvers
+- Resolution time
+- SLA performance
+- Reopened incidents
+- Customer information
+- Customer satisfaction ratings
+
+The dataset is provided in **Excel (.xlsx) format** within the repository so that the project data can be reviewed easily.
+
+The analytical dataset was prepared using SQL before being used for Power BI reporting and analysis.
+
+---
+
+# 🗃️ Data Model
+
+The Power BI solution uses a structured data model designed to support efficient filtering and analysis.
+
+The model separates transactional incident information from analytical dimensions where applicable.
+
+Key analytical entities include:
+
+- Incident Data
+- Date
+- Customer
+- Priority
+- Category
+- Assignment Group
+- Resolver
+
+The model supports relationships required for time-based analysis, incident performance reporting, customer analytics, and interactive filtering.
+
+> A screenshot of the Power BI data model can be added here.
+
+![Power BI Data Model](images/data-model.png)
+
+---
+
+# 💻 SQL Implementation
+
+SQL was used as part of the data preparation and analytical workflow.
+
+The SQL scripts included in the repository demonstrate operations such as:
+
+- Table creation and data structure
+- Data extraction
+- Data cleaning and transformation
+- JOIN operations
+- Aggregations
+- Incident-level analysis
+- SLA analysis
+- Resolution time analysis
+- Category and priority analysis
+- KPI validation queries
+
+The Excel dataset included in this repository provides an accessible version of the prepared data, while the SQL scripts demonstrate the database-side data preparation and analytical approach.
+
+---
+
+# 📁 Repository Structure
+
+```text
+powerbi-incident-dashboard/
+│
+├── README.md
+│
+├── dataset/
+│   └── incident_dataset.xlsx
+│
+├── pbix/
+│   └── Incident Analytics Dashboard.pbix
+│
+├── sql/
+│   └── SQL scripts
+│
+├── docs/
+│   └── Incident Analytics Dashboard.pdf
+│
+└── images/
+    ├── executive-summary.png
+    ├── operational-performance.png
+    ├── customer-experience.png
+    ├── sla-performance-monitoring.png
+    ├── incident-intelligence-hub.png
+    ├── top-n-analysis.png
+    └── data-model.png
