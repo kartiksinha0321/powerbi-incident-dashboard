@@ -26,7 +26,6 @@ The project combines **SQL-based data preparation, Power BI data modeling, DAX m
 - [SQL Implementation](#-sql-implementation)
 - [Repository Structure](#-repository-structure)
 - [How to Use](#-how-to-use)
-- [Future Enhancements](#-future-enhancements)
 - [Author](#-author)
 
 ---
@@ -524,3 +523,35 @@ powerbi-incident-dashboard/
     ├── top-n-analysis.png
     ├── investigation-center.png
     └── data-model.png
+
+---
+
+# 🚀 How to Use
+
+1. Clone or download this repository.
+2. Download the CSV datasets from the `dataset` folder.
+3. Run `01_CreateTables.sql` to create the required SQL Server tables.
+4. Update the local CSV file paths in `02_LoadData.sql` and run the script to load the datasets into SQL Server.
+5. Run the remaining SQL scripts for analytical queries, KPI validation, and data-quality checks as required.
+6. Open the `.pbix` file from the `pbix` folder using Power BI Desktop.
+7. Update the SQL Server data source connection in Power BI if required.
+8. Refresh the dataset and explore the dashboard using the available slicers and interactive features.
+
+### Dashboard Interaction
+
+- Use slicers to filter by Date, Status, Priority, Severity, Category, Subcategory, and Assignment Group.
+- Use the **Incident Intelligence Hub** to dynamically select analysis dimensions and metrics.
+- Use the **Decomposition Tree** to explore incident drivers across Assignment Group, Category, Subcategory, and Resolver.
+- Use the **Top-N parameter** to dynamically analyze top categories, resolvers, priorities, and customers.
+- Use **Drillthrough** to navigate to the Investigation Center for detailed incident and customer-level analysis.
+
+---
+
+# 👤 Author
+
+**Kartik Sinha**
+BI and Operations Analyst | SQL | DAX | Power Query | Data Modeling | Business Intelligence
+
+This project was developed as a portfolio project to demonstrate end-to-end capabilities in SQL-based data preparation, Power BI data modeling, DAX development, interactive dashboard design, and IT incident analytics.
+
+**GitHub:** [kartiksinha0321](https://github.com/kartiksinha0321)
