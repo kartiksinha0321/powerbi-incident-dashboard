@@ -388,7 +388,7 @@ The project uses two structured datasets designed to support incident management
 
 ### Fact Incident Dataset
 
-The `Fact_incident_Dataset.xlsx` file contains **15,000 incident-level records** covering the period from **2023 to 2026**.
+The `Fact_incident_Dataset.csv` file contains **15,000 incident-level records** covering the period from **2023 to 2026**.
 
 The dataset includes:
 
@@ -414,7 +414,7 @@ The dataset includes:
 
 ### Customer Dataset
 
-The `Dim_Customer_Dataset.xlsx` file contains **5,000 customer records** and is used as the customer dimension in the Power BI data model.
+The `Dim_Customer_Dataset.csv` file contains **5,000 customer records** and is used as the customer dimension in the Power BI data model.
 
 The dataset includes:
 
@@ -463,26 +463,33 @@ The Power BI solution follows a **star-schema-style data model**, with the `Fact
 The model uses primarily **one-to-many relationships** between dimension tables and the central fact table, enabling efficient filtering and analysis across different business dimensions.
 
 ![Power BI Data Model](images/data-model.png)
+
 ---
 
 # 💻 SQL Implementation
 
-SQL was used as part of the data preparation and analytical workflow.
+SQL Server was used as part of the data preparation, validation, and analytical workflow for the Incident Analytics Dashboard.
 
-The SQL scripts included in the repository demonstrate operations such as:
+The repository includes SQL scripts that demonstrate the end-to-end database workflow:
 
-- Table creation and data structure
-- Data extraction
-- Data cleaning and transformation
-- JOIN operations
-- Aggregations
-- Incident-level analysis
-- SLA analysis
-- Resolution time analysis
-- Category and priority analysis
-- KPI validation queries
+- `01_CreateTables.sql` — Creates the `Fact_Incident` and `Dim_Customer` tables, defines the relationship between them, and creates supporting indexes.
+- `02_LoadData.sql` — Demonstrates loading the CSV datasets into SQL Server using `BULK INSERT`.
+- `03_AnalyticsQueries.sql` — Contains analytical queries for incident trends, priorities, categories, assignment groups, resolver efficiency, reopened incidents, CSAT, and customer analysis.
+- `04_KPIQueries.sql` — Contains SQL queries used to calculate and validate key dashboard metrics such as SLA Compliance, SLA Breach Rate, Average CSAT, Average Resolution Time, P1 incidents, and Reopened Rate.
+- `05_DataQualityChecks.sql` — Performs data-quality checks for duplicate records, unmatched customer relationships, invalid dates, resolution times, and CSAT values.
 
-The Excel dataset included in this repository provides an accessible version of the prepared data, while the SQL scripts demonstrate the database-side data preparation and analytical approach.
+### Data Loading
+
+The repository includes the following source datasets in CSV format:
+
+- `Fact_incident_Dataset.csv` — Contains 15,000 incident records.
+- `Dim_Customer_Dataset.csv` — Contains 5,000 customer records.
+
+The CSV datasets can be loaded into SQL Server using the provided `02_LoadData.sql` script. Local file paths in the script should be updated according to the user's environment.
+
+The `customer_id` field establishes the relationship between `Fact_Incident` and `Dim_Customer`, enabling incident-level and customer-level analysis.
+
+SQL is used to demonstrate the database-side data preparation, validation, and analytical workflow, while Power BI is used for data modeling, DAX calculations, dynamic analysis, and interactive dashboard development.
 
 ---
 
@@ -494,14 +501,18 @@ powerbi-incident-dashboard/
 ├── README.md
 │
 ├── dataset/
-├── Fact_incident_Dataset.xlsx
-└── Dim_Customer_Dataset.xlsx
+    ├── Fact_incident_Dataset.csv
+    └── Dim_Customer_Dataset.csv
 │
 ├── pbix/
 │   └── Incident Analytics Dashboard.pbix
 │
 ├── sql/
-│   └── SQL scripts
+    ├── 01_CreateTables.sql
+    ├── 02_LoadData.sql
+    ├── 03_AnalyticsQueries.sql
+    ├── 04_KPIQueries.sql
+    └── 05_DataQualityChecks.sql
 │
 ├── docs/
 │   └── Incident Analytics Dashboard.pdf
