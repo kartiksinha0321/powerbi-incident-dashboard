@@ -459,7 +459,8 @@ powerbi-incident-dashboard/
 ├── README.md
 │
 ├── dataset/
-│   └── incident_dataset.xlsx
+├── Fact_incident_Dataset.xlsx
+└── Dim_Customer_Dataset.xlsx
 │
 ├── pbix/
 │   └── Incident Analytics Dashboard.pbix
@@ -477,4 +478,5 @@ powerbi-incident-dashboard/
     ├── sla-performance-monitoring.png
     ├── incident-intelligence-hub.png
     ├── top-n-analysis.png
+    ├── investigation-center.png
     └── data-model.png
