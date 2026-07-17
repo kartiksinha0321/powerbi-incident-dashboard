@@ -382,8 +382,6 @@ A **Back button** allows users to return to the originating report page after co
 
 # 📂 Data Source
 
-# 📂 Data Source
-
 The project uses two structured datasets designed to support incident management and customer experience analytics.
 
 ### Fact Incident Dataset
