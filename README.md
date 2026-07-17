@@ -551,6 +551,7 @@ powerbi-incident-dashboard/
 # 👤 Author
 
 **Kartik Sinha**
+
 BI and Operations Analyst | SQL | DAX | Power Query | Data Modeling | Business Intelligence
 
 This project was developed as a portfolio project to demonstrate end-to-end capabilities in SQL-based data preparation, Power BI data modeling, DAX development, interactive dashboard design, and IT incident analytics.
